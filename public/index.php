@@ -5,13 +5,15 @@ include ('../config/main.php');
 include ('../vendor/autoload.php');
 
 use app\services\Autoloader;
-use app\models\Product;
+use \app\services\Request;
 use app\services\renderers\TemplateRenderer;
 
 spl_autoload_register([new Autoloader(), 'loadClass']);
 
-$controllerName = ($_GET['c']) ?? DEFAULT_CONTROLLER;
-$actionName = (isset($_GET['a']) ? $_GET['a'] : 0);
+$request = new Request();
+
+$controllerName = $request->getControllerName() ?? DEFAULT_CONTROLLER;
+$actionName = $request->getActionName();
 
 $controllerClass = CONTROLLER_NAMESPACE . ucfirst($controllerName) . "Controller";
 

@@ -9,6 +9,8 @@
 namespace app\controllers;
 
 use app\models\Product;
+use app\models\repositories\ProductRepository;
+use app\services\Request;
 
 class ProductController extends Controller
 {
@@ -16,7 +18,7 @@ class ProductController extends Controller
   public function actionIndex() {
     $this->useLayout = false;
     //создаём необходимую сущность для отрисовки, вытаскивая нужную инфу из БД
-    $product = Product::getAll();
+    $product = (new ProductRepository())->getAll();
     // отправляем на отрисовку
     echo $this->render("gallery", ['product'=>$product, 'className'=>$this->getClassName()]);
   }
@@ -26,9 +28,9 @@ class ProductController extends Controller
     // для этого метода не применяем статическую часть сайта
     $this->useLayout = false;
     //получаем id us url (прилетит туда гет запросом)
-    $id = $_GET['id'];
+    $id = (new Request())->getParams()['id'];
     //создаём необходимую сущность для отрисовки, вытаскивая нужную инфу из БД
-    $product = Product::getOne($id);
+    $product = (new ProductRepository())->getOne($id);
     // отправляем на отрисовку
    echo $this->render("card", ['product'=>$product, 'className'=>$this->getClassName()]);
   }

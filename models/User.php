@@ -16,8 +16,4 @@ class User extends Record
  public $password;
  public $email;
 
- static function getTableName(): string
- {
-  return 'users';
- }
 }

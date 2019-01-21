@@ -9,6 +9,8 @@
 namespace app\controllers;
 
 use app\models\Product;
+use app\models\repositories\UserRepository;
+
 class CartController extends Controller
 {
   public function actionIndex() {
@@ -22,7 +24,7 @@ class CartController extends Controller
     //получаем id us url (прилетит туда гет запросом)
     $id = $_GET['id'];
     //создаём необходимую сущность для отрисовки, вытаскивая нужную инфу из БД
-    $product = Product::getOne($id);
+    $product = (new UserRepository())->getOne($id);
     // отправляем на отрисовку
     echo $this->render("card", ['product' => $product, 'className'=>$this->getClassName()]);
   }

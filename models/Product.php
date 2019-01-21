@@ -18,16 +18,10 @@ class Product extends Record
 
 public function __construct($id = null, $name = null, $description = null, $price = null, $vendor_id = null)
 {
-  parent::__construct();
   $this->id=$id;
   $this->name=$name;
   $this->description=$description;
   $this->price=$price;
   $this->vendor_id=$vendor_id;
 }
-
-  static function getTableName(): string
-  {
-    return 'products';
-  }
 }
