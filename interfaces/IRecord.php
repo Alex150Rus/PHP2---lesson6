@@ -8,7 +8,6 @@
 
 namespace app\interfaces;
 
-
 interface IRecord
 {
 

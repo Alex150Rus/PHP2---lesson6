@@ -1,6 +1,5 @@
 <?php
 
-include ('../services/Autoloader.php');
 include ('../config/main.php');
 include ('../vendor/autoload.php');
 
@@ -12,8 +11,9 @@ spl_autoload_register([new Autoloader(), 'loadClass']);
 
 $request = new Request();
 
-$controllerName = $request->getControllerName() ?? DEFAULT_CONTROLLER;
+$controllerName = $request->getControllerName() ?: DEFAULT_CONTROLLER;
 $actionName = $request->getActionName();
+
 
 $controllerClass = CONTROLLER_NAMESPACE . ucfirst($controllerName) . "Controller";
 

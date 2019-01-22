@@ -8,7 +8,6 @@
 
 namespace app\controllers;
 
-
 use app\interfaces\IRenderer;
 
 abstract class Controller
